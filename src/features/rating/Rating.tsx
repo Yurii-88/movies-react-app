@@ -1,4 +1,4 @@
-import Button from '../../components/common/button/Button';
+import Button from '../../components/common/Button';
 import type { RatingProps } from './Rating.types';
 
 export default function StarRating({ value, totalStars = 5, onRatingChange }: RatingProps) {
