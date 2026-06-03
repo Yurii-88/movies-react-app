@@ -1,10 +1,15 @@
-import { useTheme } from '../context/ThemeContext';
-import DarkIcon from './icons/DarkIcon';
-import LightIcon from './icons/LightIcon';
+import { useTheme } from '../hooks/useTheme';
+import { headerIconClasses } from './icons/constants';
+import DarkThemeIcon from './icons/DarkThemeIcon';
+import LightThemeIcon from './icons/LightThemeIcon';
 
 export default function ThemeToggler() {
   const { theme, toggleTheme } = useTheme();
-  const Icon = theme === 'dark' ? LightIcon : DarkIcon;
+  const ThemeIcon = theme === 'dark' ? LightThemeIcon : DarkThemeIcon;
 
-  return <Icon toggleTheme={toggleTheme} />;
+  return (
+    <button onClick={toggleTheme} aria-label="Toggle theme">
+      <ThemeIcon className={headerIconClasses} />
+    </button>
+  );
 }

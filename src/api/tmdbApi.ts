@@ -1,16 +1,18 @@
 const API_KEY = import.meta.env.VITE_TMDB_READ_ACCESS_TOKEN;
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-const request = async (endpoint, params = {}) => {
+const request = async (endpoint: string, params = {}) => {
   const url = new URL(`${BASE_URL}${endpoint}`);
 
-  url.search = new URLSearchParams({
-    ...params,
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      url.searchParams.set(key, String(value));
+    }
   });
 
   const res = await fetch(url, {
     headers: {
-      Authorization: `Bearer ${import.meta.env.VITE_TMDB_READ_ACCESS_TOKEN}`,
+      Authorization: `Bearer ${API_KEY}`,
       'Content-Type': 'application/json',
     },
   });
@@ -22,7 +24,6 @@ const request = async (endpoint, params = {}) => {
   return res.json();
 };
 
-// API methods
 export const getPopularMovies = (page = 1) => request('/movie/popular', { page });
-export const searchMovies = (query, page = 1) => request('/search/movie', { query, page });
-export const getMovieDetails = (movieId) => request(`/movie/${movieId}`);
+export const searchMovies = (query: string, page = 1) => request('/search/movie', { query, page });
+export const getMovieDetails = (movieId: number) => request(`/movie/${movieId}`);

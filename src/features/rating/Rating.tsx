@@ -1,4 +1,3 @@
-import Button from '../../components/common/Button';
 import type { RatingProps } from './Rating.types';
 
 export default function StarRating({ value, totalStars = 5, onRatingChange }: RatingProps) {
@@ -10,9 +9,9 @@ export default function StarRating({ value, totalStars = 5, onRatingChange }: Ra
         const buttonClasses = rating <= value ? 'text-yellow-400' : 'text-gray-400';
 
         return (
-          <Button key={index} classes={buttonClasses} onClick={() => onRatingChange(rating)}>
+          <button key={index} className={buttonClasses} onClick={() => onRatingChange(rating)}>
             ★
-          </Button>
+          </button>
         );
       })}
     </div>

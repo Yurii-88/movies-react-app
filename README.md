@@ -33,8 +33,8 @@ A modern movie browsing application built with **React**, **Vite**, **TypeScript
 Clone the repository:
 
 ```bash
-git clone https://github.com/Yurii-88/movies-react-app
-cd movies-react-app
+git clone https://github.com/Yurii-88/tmdb-fullstack-app
+cd tmdb-fullstack-app
 ```
 
 Install dependencies:
