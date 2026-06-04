@@ -33,8 +33,8 @@ A modern movie browsing application built with **React**, **Vite**, **TypeScript
 Clone the repository:
 
 ```bash
-git clone https://github.com/Yurii-88/movies-react-app
-cd movies-react-app
+git clone https://github.com/Yurii-88/tmdb-fullstack-app
+cd tmdb-fullstack-app
 ```
 
 Install dependencies:
@@ -100,8 +100,10 @@ npm run preview
 src/
 │
 ├── app/             # Redux store configuration
+├── api/             # TMDB API
 ├── assets/          # Static assets
 ├── components/      # Reusable UI components
+├── context/         # React context providers and shared state hooks
 ├── features/        # Redux slices (movies, auth, favorites, etc.)
 ├── firebase/        # Contains Firebase config
 ├── hooks/           # Custom React hooks
