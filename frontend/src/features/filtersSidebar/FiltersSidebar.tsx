@@ -10,7 +10,8 @@ export default function Sidebar({ onHideFilters }: SidebarProps) {
   const dispatch = useDispatch();
   const filters = useSelector((state: RootState) => state.filters);
   const handleClearFilters = () => dispatch(resetFilters());
-  const handleFilterChange = (filter: SearchFilter, value: string) => dispatch(setFiltersValue({ filter, value }));
+  const handleFilterChange = (filter: SearchFilter, value: string) =>
+    dispatch(setFiltersValue({ filter, value }));
   const handleRatingChange = (value: number) => dispatch(setRating(value));
 
   return (

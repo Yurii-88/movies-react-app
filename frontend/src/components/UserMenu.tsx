@@ -4,7 +4,8 @@ import UserIcon from './icons/UserIcon';
 export default function UserProfile() {
   const [isUserMenuOpened, setIsUserMenuOpened] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const buttonClasses = 'block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer';
+  const buttonClasses =
+    'block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer';
 
   useEffect(() => {
     if (!isUserMenuOpened) return;
