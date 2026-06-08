@@ -25,7 +25,7 @@ const filtersSidebarSlice = createSlice({
           filter: SearchFilter;
           value: string;
         };
-      }
+      },
     ) {
       state[action.payload.filter] = action.payload.value;
     },

@@ -1,30 +1,47 @@
-# 🎬 React + Vite Movie App
+﻿# TMDB Full-Stack App
 
-A modern movie browsing application built with **React**, **Vite**, **TypeScript**, **Tailwind CSS**, **Redux Toolkit**, **Firebase**, and **TMDB API**. This project provides a fast, scalable, and responsive UI for discovering movies, viewing details, and managing user-specific data.
+A full-stack movie discovery application with a **React + Vite** frontend and a **Node.js + Express + TypeScript** backend.
+
+This repository uses npm workspaces to manage two independent apps:
+
+- `frontend/` — React client application
+- `backend/` — Express API server with Prisma
 
 ---
 
 ## 🚀 Tech Stack
 
-- ⚛️ React — UI library
-- ⚡ Vite — Fast build tool and dev server
-- 🟦 TypeScript — Static typing for scalability
-- 🎨 Tailwind CSS — Utility-first styling
-- 🧠 Redux Toolkit — State management
-- 🔥 Firebase — Authentication & backend services
-- 🎥 TMDB API — Movie data source
+**Frontend:**
+
+- React
+- Vite
+- TypeScript
+- Tailwind CSS
+- Redux Toolkit
+- React Router
+
+**Backend:**
+
+- Node.js
+- Express
+- TypeScript
+- PostgreSQL
+- Prisma ORM
+
+**External API:**
+
+- TMDB ([The Movie Database](https://www.themoviedb.org/))
 
 ---
 
 ## 📦 Features
 
-- 🔍 Browse trending and popular movies
-- 🎬 View detailed movie information
-- ❤️ Save favorites & watchlist (Firebase + Redux state sync)
-- 🔐 User authentication (Firebase Auth)
-- 🧠 Global state management with Redux Toolkit
-- 📱 Fully responsive UI
-- ⚡ Fast performance with Vite
+- Browse and search movies from the TMDB API
+- Show movie details and metadata
+- Responsive UI built with React + Tailwind
+- Backend authentication API built with Express
+- PostgreSQL database access via Prisma
+- Workspace-based monorepo structure
 
 ---
 
@@ -37,153 +54,149 @@ git clone https://github.com/Yurii-88/tmdb-fullstack-app
 cd tmdb-fullstack-app
 ```
 
-Install dependencies:
+Install all workspace dependencies from the root:
 
 ```bash
 npm install
+```
+
+If you need to install dependencies separately:
+
+```bash
+cd frontend && npm install
+cd backend && npm install
 ```
 
 ---
 
 ## ⚙️ Environment Variables
 
-Create a `.env` file in the root directory and add the following:
+Create `.env` files in the app folders with the values below.
+
+### `frontend/.env`
 
 ```env
 VITE_TMDB_READ_ACCESS_TOKEN=your_tmdb_read_access_token
-
-VITE_FIREBASE_API_KEY=your_firebase_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-VITE_FIREBASE_APP_ID=your_app_id
+VITE_BASE_URL=https://api.themoviedb.org/3
 ```
+
+### `backend/.env`
+
+```env
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public"
+TMDB_API_KEY=your_tmdb_api_key
+PORT=3000
+```
+
+> Replace `USER`, `PASSWORD`, `HOST`, `PORT`, and `DATABASE` with your PostgreSQL connection values.
 
 ---
 
-## 🧪 Development
+## 🧩 Run Locally
 
-Run the development server:
+### Start backend
 
 ```bash
+cd backend
 npm run dev
 ```
 
-Open in browser:
+### Start frontend
 
+```bash
+cd frontend
+npm run dev
 ```
+
+### Or run both from the root
+
+```bash
+npm run dev:frontend
+npm run dev:backend
+```
+
+Open the frontend in the browser at:
+
+```bash
 http://localhost:5173
+```
+
+The backend listens on:
+
+```bash
+http://localhost:3000
 ```
 
 ---
 
 ## 📦 Build
 
-Create a production build:
+### Frontend
 
 ```bash
+cd frontend
 npm run build
 ```
 
-Preview the production build:
+### Backend
 
 ```bash
-npm run preview
+cd backend
+npm run build
 ```
 
 ---
 
-## 📁 Project Structure
+## 🧪 Useful Scripts
 
-```
-src/
-│
-├── app/             # Redux store configuration
-├── api/             # TMDB API
-├── assets/          # Static assets
-├── components/      # Reusable UI components
-├── context/         # React context providers and shared state hooks
-├── features/        # Redux slices (movies, auth, favorites, etc.)
-├── firebase/        # Contains Firebase config
-├── hooks/           # Custom React hooks
-├── pages/           # Route-based pages
-├── services/        # API (TMDB) & Firebase logic
-├── types/           # TypeScript types/interfaces
-├── utils/           # Helper functions
-├── App.tsx          # Root component
-├── index.css        # Global CSS styles and/or CSS third-party package (3PP) imports
-└── main.tsx         # App entry point
-```
+### Root workspace
 
----
+- `npm run dev:frontend` — start frontend dev server
+- `npm run dev:backend` — start backend dev server
 
-## 🧠 Redux Toolkit Setup
+### Frontend
 
-- Centralized store in `src/app/store.ts`
-- Feature-based slices (e.g., `moviesSlice`, `authSlice`, `favoritesSlice`)
-- Async logic handled with `createAsyncThunk`
-- Typed hooks (`useAppDispatch`, `useAppSelector`) for TypeScript safety
+- `npm run dev`
+- `npm run build`
+- `npm run lint`
+- `npm run lint:fix`
+- `npm run test`
+- `npm run preview`
 
-Example:
+### Backend
 
-```ts
-import { createSlice } from '@reduxjs/toolkit';
-
-const moviesSlice = createSlice({
-  name: 'movies',
-  initialState: { list: [], loading: false },
-  reducers: {},
-});
-```
+- `npm run dev`
+- `npm run build`
+- `npm run start`
+- `npm run prisma:generate`
+- `npm run prisma:migrate`
+- `npm run prisma:studio`
+- `npm run lint`
+- `npm run lint:fix`
+- `npm run prettier`
+- `npm run prettier:fix`
 
 ---
 
-## 🔐 Firebase Setup
+## 📝 Notes
 
-1. Create a project in Firebase Console
-2. Enable Authentication (Email/Password or providers like Google)
-3. Create Firestore database (for favorites/watchlist)
-4. Copy config values into `.env`
-
----
-
-## 🎥 TMDB API Setup
-
-1. Create an account at TMDB
-2. Generate an API key
-3. Add it to your `.env` file
+- The frontend currently fetches movie data directly from TMDB using `VITE_BASE_URL` and `VITE_TMDB_READ_ACCESS_TOKEN`.
+- The backend exposes authentication routes under `/api/auth` and is configured to use Prisma with PostgreSQL.
+- Add database models in `backend/prisma/schema.prisma`.
+- Extend backend routes in `backend/src/api`.
 
 ---
 
-## 📸 Screenshots
+## 💡 Future Improvements
 
-_(Add screenshots of your app here)_
-
----
-
-## 🧩 Future Improvements
-
-- 🎭 Genre-based filtering
-- 🔎 Advanced search with debounce
-- ⭐ Ratings and reviews
-- 🌙 Dark mode toggle
-- 📺 TV shows support
-- 🧠 Persisted Redux state (e.g., with localStorage)
+- Add frontend authentication flows with backend auth API
+- Persist user favorites and watchlist data in PostgreSQL
+- Add server-side TMDB proxy endpoints
+- Add end-to-end and unit tests for both apps
+- Add a shared API client and better error handling
 
 ---
 
-## 💡 Acknowledgements
+## 📬 Support
 
-- TMDB for providing the movie API
-- Firebase for backend services
-- Vite for lightning-fast tooling
-- Redux Toolkit for simplifying state management
-
----
-
-## 📬 Contact
-
-For questions or feedback, feel free to reach out or open an issue.
-
----
+If you need help, reach me out via matviychuk.yuriy88@gmail.com

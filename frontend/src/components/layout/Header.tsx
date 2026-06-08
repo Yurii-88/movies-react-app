@@ -5,9 +5,9 @@ import ThemeToggler from '../ThemeToggler';
 import UserMenu from '../UserMenu';
 
 export default function Header() {
-  function handleSearchMovie(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleSearchMovie(event: React.ChangeEvent<HTMLInputElement>) {
     // TODO: implement search functionality
-    const query = e.target.value;
+    console.log('Search query:', event.target.value);
   }
 
   return (

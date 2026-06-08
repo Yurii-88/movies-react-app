@@ -8,7 +8,9 @@ export default function Notifications() {
   return (
     <button className="relative" onClick={() => setHasNotifications(prev => !prev)}>
       <NotificationIcon />
-      {hasNotifications && <span className="absolute top-0 right-0 flex h-2 w-2 rounded-full bg-amber-600"></span>}
+      {hasNotifications && (
+        <span className="absolute top-0 right-0 flex h-2 w-2 rounded-full bg-amber-600"></span>
+      )}
     </button>
   );
 }
